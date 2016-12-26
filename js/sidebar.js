@@ -1,5 +1,9 @@
 var app = angular.module('myApp', []);
 
+app.controller('sidebar', ['$scope', function($scope){
+	
+}]);
+
 app.directive('sidebar', [function () {
 	return {
 		restrict: 'E',
@@ -7,10 +11,9 @@ app.directive('sidebar', [function () {
 
 			var _isNumber = function(n) {
 				return !isNaN(parseFloat(n)) && isFinite(n);
-			},
-			bg = document.createElement("div"),
-			btn = document.getElementById(iAttrs.name),
-			element = iElement[0];
+			}
+			
+			var element = iElement[0], bg = document.createElement("div");
 
 			element.style.display = 'block';
 
@@ -24,28 +27,25 @@ app.directive('sidebar', [function () {
 			element.classList.add("sidebar--" + iAttrs.position);
 
 			//create element bg
-			bg.classList.add("sidebar-bg");
+			bg.classList.add("sidebar-bg", iAttrs.id);
 
 			//appen has bg
 			if(iAttrs.hasBg === "true")
 				document.body.appendChild(bg);
 
-			//checks if the button makes reference to sidebar
-			if(btn != null){
+			//click on button to open/close sidebar
+			scope.toggleSidebar = function(id) {
+				var _element = document.getElementById(id), _bg = document.getElementsByClassName(id)[0];
 
-				//click to open/close sidebar
-				btn.addEventListener("click", function(){
-					element.classList.toggle("sidebar--is-open");
-					bg.classList.toggle("sidebar-bg--is-visible");
-				});
-
-				bg.addEventListener("click", function(){
-					element.classList.toggle("sidebar--is-open");
-					bg.classList.toggle("sidebar-bg--is-visible");
-				});
-			}else{
-				console.warn("the button has no id or have standing before the", iAttrs.name);
+				_element.classList.toggle("sidebar--is-open");
+				_bg.classList.toggle("sidebar-bg--is-visible");
 			}
+
+			//click on background to open/close sidebar
+			bg.addEventListener("click", function(){
+				element.classList.toggle("sidebar--is-open");
+				bg.classList.toggle("sidebar-bg--is-visible");
+			});
 
 		}
 	};

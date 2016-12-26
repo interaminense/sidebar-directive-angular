@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/sidebar.css">
 </head>
-<body>
+<body ng-controller="sidebar">
 
 	<!--
 			this is sidebar
@@ -17,7 +17,7 @@
 			has-bg: if has a background
 			is-expanded: if true the sidebar carries open
 	-->
-	<sidebar name="sidebar1" size="400" position="left" has-bg="true" is-expanded="true">
+	<sidebar id="sidebar1" size="400" position="left" has-bg="true" is-expanded="true">
 		<br>
 		<br>
 		<ul>
@@ -30,7 +30,7 @@
 		</ul>
 	</sidebar>
 
-	<sidebar name="sidebar2" size="50%" position="right" has-bg="true" is-expandable="true">
+	<sidebar id="sidebar2" size="50%" position="right" has-bg="true" is-expandable="true">
 		<div class="spacing">
 			<br>
 			<p>
@@ -40,9 +40,9 @@
 	</sidebar>
 
 	<!--add a button with the same id of sidebar-->
-	<button class="btn-sidebar btn-sidebar--left" id="sidebar1">sidebar left</button>
+	<button class="btn-sidebar btn-sidebar--left" ng-click="toggleSidebar('sidebar1')">sidebar left</button>
 
-	<button class="btn-sidebar btn-sidebar--right" id="sidebar2">sidebar right</button>
+	<button class="btn-sidebar btn-sidebar--right" ng-click="toggleSidebar('sidebar2')">sidebar right</button>
 
 	<div class="text">
 		<h1>Directive &lt;sidebar/&gt;</h1>
