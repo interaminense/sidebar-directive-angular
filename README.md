@@ -1,5 +1,7 @@
 # Sidebar directive AngularJS
 
+![image demo sidebar](https://raw.githubusercontent.com/interaminense/sidebar-directive-angular/gh-pages/img/example.gif)
+
 Directive created to give agility in the construction of a simple sidebar
 
 ### Directive
