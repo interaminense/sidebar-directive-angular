@@ -1,0 +1,70 @@
+//
+// SIDEBAR
+//
+
+$bg-sidebar: white;
+$sidebar-bg-v-second: .2s;
+
+$sidebar-box-shadow-offset-x: 4px;
+$sidebar-box-shadow-color: rgba(black, .2);
+
+sidebar {
+	position: absolute;
+	background-color: $bg-sidebar;
+	transition: transform .3s ease-in-out;
+	z-index: 1000; //z-index custom
+	top: 0;
+	overflow: auto;
+	display: none;
+
+	&.sidebar--is-open {
+		
+		&.sidebar--left,
+		&.sidebar--right {
+			transform: translateX(0);
+		}
+
+		&.sidebar--left {
+			box-shadow: #{$sidebar-box-shadow-offset-x} 0 9px 0px #{$sidebar-box-shadow-color};
+		}
+		&.sidebar--right {
+			box-shadow: -#{$sidebar-box-shadow-offset-x} 0 9px 0px #{$sidebar-box-shadow-color};
+		}
+	}
+
+	&.sidebar--left {
+		left: 0;
+		transform: translateX(-100%);
+	}
+
+	&.sidebar--right {
+		right: 0;
+		transform: translateX(100%);
+	}
+	
+	&.sidebar--left,
+	&.sidebar--right {
+		height: 100%;
+	}
+
+}
+
+.sidebar-bg {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	width: 0vw;
+	height: 0vh;
+	background-color: black;
+	opacity: 0;
+	transition: opacity $sidebar-bg-v-second linear, width 0s linear $sidebar-bg-v-second, height 0s linear $sidebar-bg-v-second;
+
+	&.sidebar-bg--is-visible {
+		opacity: .5;
+		width: 100vw;
+		height: 100vh;
+		transition: opacity $sidebar-bg-v-second linear;
+	}
+}
