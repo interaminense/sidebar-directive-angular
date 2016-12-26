@@ -7,7 +7,7 @@ Directive created to give agility in the construction of a simple sidebar
 ### Directive
 
 ```html
-<sidebar name="sidebar1" size="50%" position="right" has-bg="true" is-expandable="true">
+<sidebar id="sidebar1" size="50%" position="right" has-bg="true" is-expandable="true">
   <ul>
     <li>is a item</li>
     <li>is a item</li>
@@ -16,14 +16,14 @@ Directive created to give agility in the construction of a simple sidebar
 </sidebar>
 
 <!--add a button with the same id of sidebar-->
-<button id="sidebar1">sidebar left</button>
+<button ng-click="toggleSidebar('sidebar1')">sidebar left</button>
 ```
 
 ### Documentation
 
 Parameter | Description | Value | required
 ------------ | ------------- | ------------- | -------------
-name | Same button name with id | String | yes
+id | Same button name with id inside function toggleSidebar('ID') | String | yes
 size | Set width of the sidebar | 100px, 100%, 100, 100vw | yes
 position | Set position of the sidebar | String left or right | yes
 has-bg | If true the sidebar have background | boolean | no
