@@ -1,6 +1,6 @@
 var app = angular.module('myApp', []);
 
-app.directive('sidebarOpen', [function() {
+app.directive('sidebarToggle', [function() {
 	return {
 		restrict: 'A',
 		link: function (scope, iElement, iAttrs) {
@@ -21,10 +21,10 @@ app.directive('sidebarOpen', [function() {
 			}
 
 			scope.element.addEventListener("click", function() {
-				var _element = document.getElementById(iAttrs.sidebarOpen);
+				var _element = document.getElementById(iAttrs.sidebarToggle);
 				_element.classList.toggle("sidebar--is-open");
 
-				var _bgSidebar = document.getElementById(iAttrs.sidebarOpen + "-bg");
+				var _bgSidebar = document.getElementById(iAttrs.sidebarToggle + "-bg");
 				_bgSidebar.classList.toggle("sidebar-bg--is-visible");
 
 				//control body
@@ -64,7 +64,7 @@ app.directive('sidebar', ['$compile', function($compile) {
 			var bgSidebar = document.createElement("div");
 			bgSidebar.setAttribute("class", "sidebar-bg");
 			bgSidebar.setAttribute("id", iAttrs.id + "-bg");
-			bgSidebar.setAttribute("sidebar-open", iAttrs.id);
+			bgSidebar.setAttribute("sidebar-toggle", iAttrs.id);
 			scope.body.appendChild(bgSidebar);
 
 			$compile(bgSidebar)(scope);
