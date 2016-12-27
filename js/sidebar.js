@@ -5,20 +5,8 @@ app.directive('sidebarToggle', [function() {
 		restrict: 'A',
 		link: function (scope, iElement, iAttrs) {
 
-			scope.flag = true;
 			scope.element = iElement[0];
 			scope.body = document.body;
-
-			//control body
-			function controlBody() {
-				if (scope.flag) {
-					scope.body.style.overflowY = "hidden";
-				} else {
-					scope.body.style.overflowY = "auto";
-				}
-
-				scope.flag = !scope.flag;
-			}
 
 			scope.element.addEventListener("click", function() {
 				var _element = document.getElementById(iAttrs.sidebarToggle);
@@ -28,7 +16,11 @@ app.directive('sidebarToggle', [function() {
 				_bgSidebar.classList.toggle("sidebar-bg--is-visible");
 
 				//control body
-				controlBody();
+				if (scope.body.style.overflowY == "auto") {
+					scope.body.style.overflowY = "hidden";
+				} else {
+					scope.body.style.overflowY = "auto";
+				}
 			});
 
 		}
