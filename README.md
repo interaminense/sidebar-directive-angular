@@ -16,7 +16,7 @@ Directive created to give agility in the construction of a simple sidebar
 </sidebar>
 
 <!--add a button with the same id of sidebar-->
-<button ng-click="toggleSidebar('sidebar1')">sidebar left</button>
+<button sidebar-open="sidebar1">sidebar left</button>
 ```
 
 ### Documentation
