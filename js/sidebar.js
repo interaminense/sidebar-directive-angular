@@ -47,7 +47,7 @@ app.directive('sidebar', ['$compile', function($compile) {
 			scope.element.style.display = "block";
 
 			//add width on sidebar
-			var isNumber = function(n) {
+			function isNumber(n) {
 				return !isNaN(parseFloat(n)) && isFinite(n);
 			}
 
