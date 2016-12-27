@@ -18,9 +18,9 @@ app.directive('sidebar', ['$compile', function($compile) {
 			}
 
 			if(isNumber(iAttrs.size))
-				scope.element.style.width = iAttrs.size + 'px';
+				scope.element.style.maxWidth = iAttrs.size + 'px';
 			else
-				scope.element.style.width = iAttrs.size;
+				scope.element.style.maxWidth = iAttrs.size;
 
 			//add class to position on sidebar
 			scope.element.classList.add("sidebar--" + iAttrs.position);
