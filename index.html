@@ -14,8 +14,8 @@
 			this is sidebar
 			size: size of sidebar
 			position: position of sidebar
-			is-expanded: if true the sidebar carries open
 	-->
+
 	<sidebar id="sidebar1" size="400" position="left" is-expanded="true">
 		<br>
 		<br>
@@ -40,9 +40,8 @@
 	</sidebar>
 
 	<!--add a button with the same id of sidebar-->
-	<button class="btn-sidebar btn-sidebar--left" ng-click="toggleSidebar('sidebar1')">sidebar left</button>
-
-	<button class="btn-sidebar btn-sidebar--right" ng-click="toggleSidebar('sidebar2')">sidebar right</button>
+	<button class="btn-sidebar btn-sidebar--left" sidebar-open="sidebar1">sidebar left</button>
+	<button class="btn-sidebar btn-sidebar--right" sidebar-open="sidebar2">sidebar right</button>
 
 	<div class="text">
 		<h1>Directive &lt;sidebar/&gt;</h1>
