@@ -55,16 +55,16 @@ sidebar {
 	right: 0;
 	top: 0;
 	bottom: 0;
-	width: 0vw;
-	height: 0vh;
+	width: 0;
+	height: 0;
 	background-color: black;
 	opacity: 0;
 	transition: opacity $sidebar-bg-v-second linear, width 0s linear $sidebar-bg-v-second, height 0s linear $sidebar-bg-v-second;
 
 	&.sidebar-bg--is-visible {
 		opacity: .5;
-		width: 100vw;
-		height: 100vh;
+		width: 100%;
+		height: 100%;
 		transition: opacity $sidebar-bg-v-second linear;
 	}
 }

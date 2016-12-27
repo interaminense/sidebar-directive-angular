@@ -1,51 +1,60 @@
 var app = angular.module('myApp', []);
 
-app.controller('sidebar', ['$scope', function($scope){
-	
-}]);
-
-app.directive('sidebar', [function () {
+app.directive('sidebar', ['$compile', function($compile) {
 	return {
 		restrict: 'E',
 		link: function (scope, iElement, iAttrs) {
 
-			var _isNumber = function(n) {
+			scope.flag = true;
+			scope.body = document.body;
+			scope.element = iElement[0];
+
+			//renderize sidebar
+			scope.element.style.display = "block";
+
+			//add width on sidebar
+			var isNumber = function(n) {
 				return !isNaN(parseFloat(n)) && isFinite(n);
 			}
-			
-			var element = iElement[0], bg = document.createElement("div");
 
-			element.style.display = 'block';
-
-			//add size on sidebar
-			if(_isNumber(iAttrs.size))
-				element.style.width = iAttrs.size + 'px';
+			if(isNumber(iAttrs.size))
+				scope.element.style.width = iAttrs.size + 'px';
 			else
-				element.style.width = iAttrs.size;
+				scope.element.style.width = iAttrs.size;
 
 			//add class to position on sidebar
-			element.classList.add("sidebar--" + iAttrs.position);
+			scope.element.classList.add("sidebar--" + iAttrs.position);
 
-			//create element bg
-			bg.classList.add("sidebar-bg", iAttrs.id);
+			//renderize bg-sidebar
+			var bgSidebar = document.createElement("div");
+			bgSidebar.setAttribute("class", "sidebar-bg");
+			bgSidebar.setAttribute("id", iAttrs.id + "-bg");
+			bgSidebar.setAttribute("ng-click", "toggleSidebar('"+ iAttrs.id +"')");
+			scope.body.appendChild(bgSidebar);
 
-			//appen has bg
-			if(iAttrs.hasBg === "true")
-				document.body.appendChild(bg);
+			$compile(bgSidebar)(scope);
 
-			//click on button to open/close sidebar
-			scope.toggleSidebar = function(id) {
-				var _element = document.getElementById(id), _bg = document.getElementsByClassName(id)[0];
+			//control body
+			var controlBody = function() {
+				if(scope.flag)
+					scope.body.style.overflowY = "hidden";
+				else
+					scope.body.style.overflowY = "auto";
 
-				_element.classList.toggle("sidebar--is-open");
-				_bg.classList.toggle("sidebar-bg--is-visible");
+				scope.flag = !scope.flag;
 			}
 
-			//click on background to open/close sidebar
-			bg.addEventListener("click", function(){
-				element.classList.toggle("sidebar--is-open");
-				bg.classList.toggle("sidebar-bg--is-visible");
-			});
+			//click to show/hide sidebar
+			scope.toggleSidebar = function(idSidebar) {
+				var _element = document.getElementById(idSidebar);
+				_element.classList.toggle("sidebar--is-open");
+
+				var _bgSidebar = document.getElementById(idSidebar + "-bg");
+				_bgSidebar.classList.toggle("sidebar-bg--is-visible");
+
+				//control body
+				controlBody();
+			}
 
 		}
 	};
